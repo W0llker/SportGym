@@ -1,18 +1,25 @@
 import config.ApplicationContext;
-import entity.Status;
-import entity.User;
+import repository.hibernate.SportOfficeHibernate;
+import service.SportOfficeService;
 import service.UserService;
-
-import java.math.BigDecimal;
-import java.time.LocalDate;
 
 
 public class Main {
     public static void main(String[] args) {
         UserService userService = ApplicationContext.getInstance().getUserService();
-        System.out.println(userService.getUsers());
-//        userService.addUser(new User(1l,"Никита","Вдовенков",21,"+375445139012", LocalDate.now(), Status.ACTIVE,new BigDecimal(500)));
-//        userService.addUser(new User(4l,"Никита","Вдовенков",21,"+375445139012", LocalDate.now(), Status.BLOCKED,new BigDecimal(500)));
-        System.out.println(userService.findUser(4l));
+        SportOfficeHibernate sportOfficeDao = new SportOfficeHibernate();
+//        SportOffice sportOffice = new SportOffice();
+//        sportOffice.setInventoryNumber("1235");
+//        sportOffice.setStatusSportOffice(StatusSportOffice.ACTIVE);
+//        sportOffice.setName("Баскет");
+//        sportOffice.setPriceInHour(new BigDecimal(250));
+//        sportOffice.setMaxPeople(20);
+//        sportOfficeDao.add(sportOffice);
+//        sportOfficeDao.addAndUpdate(3l,"ИЗМН1225");
+//        sportOfficeDao.edit(3l,"maxPeople","43");
+        SportOfficeService sportOfficeService = ApplicationContext.getInstance().getSportOfficeService();
+        System.out.println(sportOfficeService.getPriceOnePerson(3l));
+        System.out.println(sportOfficeService.findById(3l));
+        System.out.println(sportOfficeService.getAll());
     }
 }

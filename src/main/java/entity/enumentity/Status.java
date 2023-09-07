@@ -1,4 +1,4 @@
-package entity;
+package entity.enumentity;
 
 public enum Status {
     ACTIVE,

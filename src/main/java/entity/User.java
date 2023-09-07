@@ -1,15 +1,15 @@
 package entity;
 
+import entity.enumentity.Status;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.io.Serial;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Calendar;
+
 @Entity
 @Data
 @AllArgsConstructor
