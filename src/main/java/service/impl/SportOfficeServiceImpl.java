@@ -1,8 +1,8 @@
 package service.impl;
 
 import entity.SportOffice;
+import entity.testentity.SportOfficeWithSubSelect;
 import repository.SportOfficeDao;
-import repository.UserDao;
 import service.SportOfficeService;
 
 import java.util.List;
@@ -20,13 +20,18 @@ public class SportOfficeServiceImpl implements SportOfficeService {
     }
 
     @Override
-    public void editSportOffice(Long id,String param,String value) {
-        sportOfficeDao.edit(id,param,value);
+    public void editSportOffice(Long id, String param, String value) {
+        sportOfficeDao.edit(id, param, value);
     }
 
     @Override
     public void delete(Long id) {
         sportOfficeDao.delete(id);
+    }
+
+    @Override
+    public List<SportOfficeWithSubSelect> findSmallPremises() {
+        return sportOfficeDao.findSmallPremises();
     }
 
     @Override

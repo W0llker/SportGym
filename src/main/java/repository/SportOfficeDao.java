@@ -1,7 +1,8 @@
 package repository;
 
-import entity.Activities;
+
 import entity.SportOffice;
+import entity.testentity.SportOfficeWithSubSelect;
 
 import java.util.List;
 
@@ -13,6 +14,8 @@ public interface SportOfficeDao {
     void edit(Long id, String param, String name);
 
     SportOffice findById(Long id);
+
+    List<SportOfficeWithSubSelect> findSmallPremises();
 
     List<SportOffice> getAllUser();
 }

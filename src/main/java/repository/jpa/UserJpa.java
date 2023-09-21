@@ -2,6 +2,7 @@ package repository.jpa;
 
 import config.ApplicationContext;
 import entity.User;
+import entity.testentity.PremiumUser;
 import repository.UserDao;
 
 import javax.persistence.EntityManager;
@@ -28,6 +29,11 @@ public class UserJpa implements UserDao {
         EntityManager entityManager = ApplicationContext.getInstance().getEntityManager();
         User user = entityManager.find(User.class,id);
         return user;
+    }
+
+    @Override
+    public List<PremiumUser> findPremium() {
+        return null;
     }
 
     @Override

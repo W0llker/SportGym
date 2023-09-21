@@ -2,13 +2,12 @@ package repository.hibernate;
 
 import config.ApplicationContext;
 import entity.SportOffice;
+import entity.testentity.SportOfficeWithSubSelect;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import repository.SportOfficeDao;
 
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.lang.reflect.Parameter;
 import java.util.List;
 
 public class SportOfficeHibernate implements SportOfficeDao {
@@ -72,6 +71,13 @@ public class SportOfficeHibernate implements SportOfficeDao {
         SportOffice sportOffice = session.find(SportOffice.class, id);
         session.close();
         return sportOffice;
+    }
+
+    @Override
+    public List<SportOfficeWithSubSelect> findSmallPremises() {
+        Session session = sessionFactory.openSession();
+        List<SportOfficeWithSubSelect> sows = session.createQuery("select sows from SportOfficeWithSubSelect sows").getResultList();
+        return sows;
     }
 
     @Override

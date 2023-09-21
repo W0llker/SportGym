@@ -1,6 +1,7 @@
 package service.impl;
 
 import entity.User;
+import entity.testentity.PremiumUser;
 import repository.UserDao;
 import service.UserService;
 
@@ -21,6 +22,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findUser(Long id) {
         return userDao.findById(id);
+    }
+
+    @Override
+    public List<PremiumUser> findUserPremium() {
+       return userDao.findPremium();
     }
 
     @Override
