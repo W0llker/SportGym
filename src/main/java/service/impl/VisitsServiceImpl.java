@@ -1,10 +1,11 @@
 package service.impl;
 
+import entity.Guest;
+import entity.SportOffice;
 import entity.Visits;
 import repository.VisitsDao;
 import service.VisitsService;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class VisitsServiceImpl implements VisitsService {
@@ -15,7 +16,11 @@ public class VisitsServiceImpl implements VisitsService {
     }
 
     @Override
-    public void addVisits(Long idUser, Long idSportOffice) {
-        visitsDao.add(new Visits(idUser, LocalDate.now(),new BigDecimal(500),idSportOffice));
+    public void addVisits(Guest guest, SportOffice sportOffice) {
+        Visits visits = new Visits();
+        visits.setGuest(guest);
+        visits.setSportOffice(sportOffice);
+        visits.setDateVisits(LocalDate.now());
+        visitsDao.add(visits);
     }
 }

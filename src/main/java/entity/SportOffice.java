@@ -1,12 +1,12 @@
 package entity;
 
 import entity.enumentity.StatusSportOffice;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.apache.commons.lang3.builder.HashCodeExclude;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Data
 @Entity
@@ -26,6 +26,13 @@ public class SportOffice {
     private StatusSportOffice statusSportOffice;
     @Column(name = "price_in_hour")
     private BigDecimal priceInHour;
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "activities_id", nullable = false)
+    private Activities activities;
+    @OneToMany(mappedBy = "sportOffice", cascade = CascadeType.ALL)
+    private List<Visits> visits;
 
     public void setMaxPeople(Integer maxPeople) {
         this.maxPeople = maxPeople;

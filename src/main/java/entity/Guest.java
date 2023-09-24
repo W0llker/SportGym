@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -22,4 +24,6 @@ public class Guest extends User {
     @Column(name = "first_date")
     private LocalDate firstDate;
     private BigDecimal amount;
+    @OneToMany(mappedBy = "guest")
+    private List<Visits> visits;
 }
