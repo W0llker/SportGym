@@ -1,5 +1,9 @@
 package service;
 
+import entity.Guest;
+import entity.SportOffice;
+
+
 public interface VisitsService {
-    void addVisits(Long idUser, Long idSportOffice);
+    void addVisits(Guest guest, SportOffice sportOffice);
 }

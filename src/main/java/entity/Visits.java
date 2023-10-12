@@ -1,9 +1,6 @@
 package entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -20,15 +17,15 @@ public class Visits {
     @SequenceGenerator(name = "seq_visit", sequenceName = "visit_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_visit")
     private Long id;
-    private Long clientId;
+    @ManyToOne()
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @JoinColumn(name = "guest_id")
+    private Guest guest;
     private LocalDate dateVisits;
-    private BigDecimal money;
-    private Long idSportOffice;
-
-    public Visits(Long clientId, LocalDate dateVisits, BigDecimal money, Long idSportOffice) {
-        this.clientId = clientId;
-        this.dateVisits = dateVisits;
-        this.money = money;
-        this.idSportOffice = idSportOffice;
-    }
+    @ManyToOne()
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @JoinColumn(name = "sportOffice_id")
+    private SportOffice sportOffice;
 }

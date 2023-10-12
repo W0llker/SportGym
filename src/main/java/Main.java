@@ -1,18 +1,15 @@
 import config.ApplicationContext;
-import entity.Address;
-import entity.Employee;
-import entity.Guest;
-import entity.User;
+import entity.*;
 import entity.enumentity.Status;
+import entity.enumentity.StatusSportOffice;
 import repository.EmployeeDao;
-import repository.hibernate.EmployeeHibernate;
-import repository.hibernate.GuestHibernate;
-import repository.hibernate.UserHibernate;
+import repository.hibernate.*;
 import service.GuestService;
 import service.UserService;
 import service.VisitsService;
 import service.impl.GuestServiceImpl;
 import service.impl.UserServiceImpl;
+import service.impl.VisitsServiceImpl;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -32,13 +29,19 @@ public class Main {
     public static void main(String[] args) {
         UserService userService = new UserServiceImpl(new UserHibernate());
 
-//        SportOfficeHibernate sportOfficeDao = new SportOfficeHibernate();
-//        SportOffice sportOffice = new SportOffice();
-//        sportOffice.setInventoryNumber("1235");
-//        sportOffice.setStatusSportOffice(StatusSportOffice.ACTIVE);
-//        sportOffice.setName("Баскет");
-//        sportOffice.setPriceInHour(new BigDecimal(250));
-//        sportOffice.setMaxPeople(20);
+        SportOfficeHibernate sportOfficeDao = new SportOfficeHibernate();
+        SportOffice sportOffice = new SportOffice();
+        sportOffice.setInventoryNumber("1235");
+        sportOffice.setStatusSportOffice(StatusSportOffice.ACTIVE);
+        sportOffice.setName("Баскет");
+        sportOffice.setPriceInHour(new BigDecimal(250));
+        sportOffice.setMaxPeople(20);
+        Activities activities = new Activities();
+        activities.setName("Баскет");
+        activities.setCost("150");
+        sportOffice.setActivities(activities);
+        sportOfficeDao.delete(5l);
+//        sportOfficeDao.add(sportOffice);
 
 //        SportOfficeService sportOfficeService = ApplicationContext.getInstance().getSportOfficeService();
 //        System.out.println(sportOfficeService.findSmallPremises());
@@ -49,25 +52,27 @@ public class Main {
 //        System.out.println(sportOfficeService.findById(3l));
 //        System.out.println(sportOfficeService.getAll());
 
-//        VisitsService visitsService = ApplicationContext.getInstance().getVisitsService();
-//        visitsService.addVisits(1l,4l);
+//        Employee employee = new Employee(LocalDate.now(),null,"Начальник",new BigDecimal(500));
+//        EmployeeDao employeeDao = new EmployeeHibernate();
+//        employeeDao.add(employee);
 
-        Employee employee = new Employee(LocalDate.now(),null,"Начальник",new BigDecimal(500));
-        EmployeeDao employeeDao = new EmployeeHibernate();
-        employeeDao.add(employee);
-
-//        Guest guest = new Guest();
-//        guest.setName("Никита");
-//        guest.setSurName("Вдовенков");
-//        guest.setNumberPhone("33981290");
-//        guest.setStatus(Status.PREMIUM);
-//        guest.setAmount(new BigDecimal(400));
-//        guest.setAddress(new Address("Гомель","км","3р","454"));
-//        guest.setFirstDate(LocalDate.now());
-//        guest.setLastDate(LocalDate.now());
-//        GuestService guestService = new GuestServiceImpl(new GuestHibernate());
+        Guest guest = new Guest();
+        guest.setName("Никита");
+        guest.setSurName("Вдовенков");
+        guest.setNumberPhone("33981290");
+        guest.setStatus(Status.PREMIUM);
+        guest.setAmount(new BigDecimal(400));
+        guest.setAddress(new Address("Гомель","км","3р","454"));
+        guest.setFirstDate(LocalDate.now());
+        guest.setLastDate(LocalDate.now());
+        GuestService guestService = new GuestServiceImpl(new GuestHibernate());
 //        guestService.add(guest);
+//        VisitsService visitsService = new VisitsServiceImpl(new VisitsHibernate());
+//        visitsService.addVisits(guestService.findById(3l),sportOfficeDao.findById(5l));
+//        System.out.println(userService.findUserPremium());
 
-        System.out.println(userService.findUserPremium());
+
+
+
     }
 }
