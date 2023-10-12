@@ -2,6 +2,7 @@ package entity;
 
 import entity.enumentity.Status;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,13 +11,22 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-@Entity
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+//@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+//@Entity
+//@DiscriminatorColumn(name = "Type_of_entity")
+//@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+//@MappedSuperclass
+@Inheritance(strategy = InheritanceType.JOINED)
+@Entity
 @Table(name = "user",schema = "sportcentersch")
-public class User implements Serializable {
+public abstract class User implements Serializable {
     @Id
+    @SequenceGenerator(name = "seq_client", sequenceName = "user_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_client")
     private Long id;
     private String name;
     @Column(name = "sur_name")
@@ -24,9 +34,14 @@ public class User implements Serializable {
     private Integer age;
     @Column(name = "number_phone")
     private String numberPhone;
-    @Column(name = "last_date")
-    private LocalDate lastDate;
-    @Enumerated(EnumType.STRING)
-    private Status status;
-    private BigDecimal amount;
+    @Embedded
+    private Address address;
+
+    public User(String name, String surName, Integer age, String numberPhone, LocalDate lastDate, Status status, BigDecimal amount, Address address) {
+        this.name = name;
+        this.surName = surName;
+        this.age = age;
+        this.numberPhone = numberPhone;
+        this.address = address;
+    }
 }

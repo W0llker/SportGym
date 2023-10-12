@@ -1,17 +1,20 @@
 package config;
 
-import entity.Activities;
-import entity.SportOffice;
-import entity.User;
+import entity.*;
+import entity.testentity.PremiumUser;
+import entity.testentity.SportOfficeWithSubSelect;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import repository.hibernate.SportOfficeHibernate;
-import repository.jpa.UserJpa;
+import repository.hibernate.UserHibernate;
+import repository.hibernate.VisitsHibernate;
 import service.SportOfficeService;
 import service.UserService;
+import service.VisitsService;
 import service.impl.SportOfficeServiceImpl;
 import service.impl.UserServiceImpl;
+import service.impl.VisitsServiceImpl;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
@@ -19,6 +22,7 @@ import java.util.Properties;
 
 public class ApplicationContext {
     private static ApplicationContext applicationContext;
+    private final VisitsService visitsService;
     private final SportOfficeService sportOfficeService;
     private final static StandardServiceRegistryBuilder service;
     private final static Configuration configuration;
@@ -37,6 +41,11 @@ public class ApplicationContext {
         configuration.setProperties(properties);
         configuration.addAnnotatedClass(User.class);
         configuration.addAnnotatedClass(Activities.class);
+        configuration.addAnnotatedClass(PremiumUser.class);
+        configuration.addAnnotatedClass(Visits.class);
+        configuration.addAnnotatedClass(Employee.class);
+        configuration.addAnnotatedClass(Guest.class);
+        configuration.addAnnotatedClass(SportOfficeWithSubSelect.class);
         configuration.addAnnotatedClass(SportOffice.class);
         service = new StandardServiceRegistryBuilder();
         service.applySettings(properties);
@@ -46,7 +55,8 @@ public class ApplicationContext {
     private ApplicationContext () {
         entityManager = Persistence.createEntityManagerFactory("UserJpa").createEntityManager();
         sportOfficeService = new SportOfficeServiceImpl(new SportOfficeHibernate());
-        userService = new UserServiceImpl(new UserJpa());
+        userService = new UserServiceImpl(new UserHibernate());
+        visitsService = new VisitsServiceImpl(new VisitsHibernate());
     }
     public static synchronized ApplicationContext getInstance() {
         if(applicationContext == null) {
@@ -59,6 +69,11 @@ public class ApplicationContext {
         SessionFactory sessionFactory = configuration.buildSessionFactory(service.build());
         return sessionFactory;
     }
+
+    public VisitsService getVisitsService() {
+        return visitsService;
+    }
+
     public UserService getUserService() {
         return userService;
     }
