@@ -6,6 +6,7 @@ import entity.Visits;
 import repository.VisitsDao;
 import service.VisitsService;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class VisitsServiceImpl implements VisitsService {
@@ -20,6 +21,7 @@ public class VisitsServiceImpl implements VisitsService {
         Visits visits = new Visits();
         visits.setGuest(guest);
         visits.setSportOffice(sportOffice);
+        visits.setAmount(new BigDecimal(250));
         visits.setDateVisits(LocalDate.now());
         visitsDao.add(visits);
     }

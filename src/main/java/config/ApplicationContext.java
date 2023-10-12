@@ -36,6 +36,13 @@ public class ApplicationContext {
         properties.setProperty("hibernate.connection.url","jdbc:postgresql://localhost:5432/testdb");
         properties.setProperty("hibernate.connection.username","postgres");
         properties.setProperty("hibernate.connection.password","nik981ita413");
+
+        properties.setProperty("hibernate.cache.use_second_level_cache", "true");
+        properties.setProperty("hibernate.cache.use_query_cache", "true");
+
+        properties.setProperty("hibernate.cache.region.factory_class","org.hibernate.cache.ehcache.internal.EhcacheRegionFactory");
+        properties.setProperty("net.sf.ehcache.configurationResourceName", "META-INF/config/ehcache.xml");
+
         properties.setProperty("hibernate.show_sql","true");
         configuration = new Configuration();
         configuration.setProperties(properties);

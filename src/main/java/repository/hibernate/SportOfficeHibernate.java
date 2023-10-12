@@ -1,12 +1,14 @@
 package repository.hibernate;
 
 import config.ApplicationContext;
+import entity.Activities;
 import entity.SportOffice;
 import entity.testentity.SportOfficeWithSubSelect;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import repository.SportOfficeDao;
 
+import javax.persistence.Query;
 import java.lang.reflect.Method;
 import java.util.List;
 
@@ -71,6 +73,14 @@ public class SportOfficeHibernate implements SportOfficeDao {
         SportOffice sportOffice = session.find(SportOffice.class, id);
         session.close();
         return sportOffice;
+    }
+
+    @Override
+    public void getAllOfficesAndAllActivitiesAndOfficesById(Long id) {
+        Session session = sessionFactory.openSession();
+        List<SportOffice> sportOffices = session.createQuery("select s from SportOffice s").getResultList();
+        List<Activities> activities = session.createQuery("select a from Activities a").getResultList();
+        SportOffice sportOffice = session.find(SportOffice.class,id);
     }
 
     @Override

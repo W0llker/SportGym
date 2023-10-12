@@ -3,6 +3,7 @@ package entity;
 import entity.enumentity.StatusSportOffice;
 import lombok.*;
 import org.apache.commons.lang3.builder.HashCodeExclude;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -13,6 +14,8 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "sport_office",schema = "sportcentersch")
+@Cacheable
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "sportoffice")
 public class SportOffice {
     @Id
     @GeneratedValue
@@ -28,7 +31,7 @@ public class SportOffice {
     private BigDecimal priceInHour;
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "activities_id", nullable = false)
     private Activities activities;
     @OneToMany(mappedBy = "sportOffice", cascade = CascadeType.ALL)
