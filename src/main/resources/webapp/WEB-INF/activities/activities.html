@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+    <title>Работа с активностями</title>
+</head>
+<body>
+<h1>Работа с активностями</h1>
+<p><span th:text="${error}"></span></p>
+<p><span th:text="${activities}"></span></p>
+
+
+<form action="#" th:action="@{activities/addActivities}" th:object="${addActivitiesReq}" method="post">
+    <fieldset>
+        <p>Добавление Активности</p>
+        <label>Имя активности</label>
+        <input type="text" th:field="*{name}" placeholder="Name">
+        <label>Цена:</label>
+        <input type="number" th:field="*{cost}" placeholder="Cost" min="1" value="1">
+        <input type="submit" value="Добавить активность">
+    </fieldset>
+</form>
+
+
+<form action="#" th:action="@{activities/updateActivities}" th:object="${addActivitiesReq}" method="post">
+    <fieldset>
+        <p>Обновить Активности</p>
+        <label>id</label>
+        <select  th:field="*{id}">
+            <th:block th:each="act : ${listActivities}">
+                <option th:value="${act.id}" th:text="${act.id}">
+                </option>
+            </th:block>
+        </select>
+        <label>Имя активности</label>
+        <input type="text" th:field="*{name}" placeholder="Name">
+        <label>Цена:</label>
+        <input type="number" th:field="*{cost}" placeholder="Cost" min="1" value="1">
+        <input type="submit" value="Обновить Активность">
+    </fieldset>
+</form>
+
+
+<form action="#" th:action="@{activities/deleteActivities}" th:object="${addActivitiesReq}" method="post">
+    <fieldset>
+        <p>Удалить активность</p>
+        <label>Id</label>
+        <input type="number" th:field="*{id}" placeholder="Id" min="1" value="1">
+        <input type="submit" value="Удалить активность">
+    </fieldset>
+</form>
+
+
+<form action="#" th:action="@{activities/findByIdActivities}" th:object="${addActivitiesReq}" method="post">
+    <fieldset>
+        <p>Поиск активности</p>
+        <label>Id</label>
+        <input type="number" th:field="*{id}" placeholder="Id" min="1" value="1">
+        <input type="submit" value="Поиск активности">
+    </fieldset>
+</form>
+<th:block th:each="act : ${listActivities}">
+    <h5><span th:text="${act}"> </span>
+        <br></h5>
+</th:block>
+</body>
+</html>
