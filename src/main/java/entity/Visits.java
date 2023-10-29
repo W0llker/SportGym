@@ -28,4 +28,5 @@ public class Visits {
     @EqualsAndHashCode.Exclude
     @JoinColumn(name = "sportOffice_id")
     private SportOffice sportOffice;
+    private BigDecimal amount;
 }

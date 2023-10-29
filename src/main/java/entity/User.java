@@ -1,10 +1,7 @@
 package entity;
 
 import entity.enumentity.Status;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -22,6 +19,7 @@ import java.time.LocalDate;
 //@MappedSuperclass
 @Inheritance(strategy = InheritanceType.JOINED)
 @Entity
+@ToString
 @Table(name = "user",schema = "sportcentersch")
 public abstract class User implements Serializable {
     @Id

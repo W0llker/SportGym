@@ -8,5 +8,6 @@ public interface ActivitiesDao {
     void add(Activities activities);
     void delete(Long id);
     Activities findById(Long id);
+    Long getLowPrice();
     List<Activities> getAllUser();
 }

@@ -3,11 +3,14 @@ import entity.*;
 import entity.enumentity.Status;
 import entity.enumentity.StatusSportOffice;
 import repository.EmployeeDao;
+import repository.GuestDao;
 import repository.hibernate.*;
 import service.GuestService;
+import service.SportsGymService;
 import service.UserService;
 import service.VisitsService;
 import service.impl.GuestServiceImpl;
+import service.impl.SportsGymServiceImpl;
 import service.impl.UserServiceImpl;
 import service.impl.VisitsServiceImpl;
 
@@ -40,7 +43,8 @@ public class Main {
         activities.setName("Баскет");
         activities.setCost("150");
         sportOffice.setActivities(activities);
-        sportOfficeDao.delete(5l);
+        sportOfficeDao.getAllOfficesAndAllActivitiesAndOfficesById(7l);
+//        sportOfficeDao.delete(5l);
 //        sportOfficeDao.add(sportOffice);
 
 //        SportOfficeService sportOfficeService = ApplicationContext.getInstance().getSportOfficeService();
@@ -55,24 +59,47 @@ public class Main {
 //        Employee employee = new Employee(LocalDate.now(),null,"Начальник",new BigDecimal(500));
 //        EmployeeDao employeeDao = new EmployeeHibernate();
 //        employeeDao.add(employee);
+//        addEmploy();
 
-        Guest guest = new Guest();
-        guest.setName("Никита");
-        guest.setSurName("Вдовенков");
-        guest.setNumberPhone("33981290");
-        guest.setStatus(Status.PREMIUM);
-        guest.setAmount(new BigDecimal(400));
-        guest.setAddress(new Address("Гомель","км","3р","454"));
-        guest.setFirstDate(LocalDate.now());
-        guest.setLastDate(LocalDate.now());
-        GuestService guestService = new GuestServiceImpl(new GuestHibernate());
+//        Guest guest = new Guest();
+//        guest.setName("Никита");
+//        guest.setSurName("Вдовенков");
+//        guest.setNumberPhone("33981290");
+//        guest.setStatus(Status.PREMIUM);
+//        guest.setAmount(new BigDecimal(400));
+//        guest.setAddress(new Address("Гомель","км","3р","454"));
+//        guest.setFirstDate(LocalDate.now());
+//        guest.setLastDate(LocalDate.now());
+//        GuestService guestService = new GuestServiceImpl(new GuestHibernate());
+//        GuestDao guestDao = new GuestHibernate();
+//        System.out.println(guestDao.findByName("Никита"));
+
+
 //        guestService.add(guest);
 //        VisitsService visitsService = new VisitsServiceImpl(new VisitsHibernate());
 //        visitsService.addVisits(guestService.findById(3l),sportOfficeDao.findById(5l));
 //        System.out.println(userService.findUserPremium());
 
 
-
-
+//        EmployeeDao employeeDao = new EmployeeHibernate();
+//        System.out.println(employeeDao.getAllEmployeeCriteria());
+//        System.out.println(employeeDao.findMaxSalary());
+//        System.out.println(employeeDao.findMinSalary());
+//        SportsGymService service = new SportsGymServiceImpl();
+//        System.out.println(service.getIncome(LocalDate.of(2022,8,20),LocalDate.of(2023,10,31)));
+//        System.out.println(service.getExpenses(LocalDate.of(2023,8,20),LocalDate.of(2023,9,20)));
+//        System.out.println(service.getIncome(LocalDate.of(2023,8,20),LocalDate.of(2023,10,31)));
+    }
+    private static void addEmploy() {
+        EmployeeDao employeeDao = new EmployeeHibernate();
+        Employee employee = new Employee();
+        employee.setName("Санька");
+        employee.setSurName("Vdovenkor");
+        employee.setAge(15);
+        employee.setPost("Начальник");
+        employee.setDismissal(LocalDate.now());
+        employee.setStartWork(LocalDate.now());
+        employee.setSalary(new BigDecimal(7500));
+        employeeDao.add(employee);
     }
 }

@@ -10,6 +10,7 @@ public interface SportOfficeDao {
     void add(SportOffice sportOffice);
 
     void delete(Long id);
+    void getAllOfficesAndAllActivitiesAndOfficesById(Long id);
 
     void edit(Long id, String param, String name);
 

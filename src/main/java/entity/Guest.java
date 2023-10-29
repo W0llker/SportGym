@@ -4,6 +4,8 @@ import entity.enumentity.Status;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
+import net.bytebuddy.implementation.bind.annotation.SuperCall;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -13,6 +15,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString(callSuper = true)
 @DiscriminatorValue(value = "guest")
 @Entity
 @Table(name = "guest",schema = "sportcentersch")
