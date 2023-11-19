@@ -1,6 +1,6 @@
 package by.pvt.entity;
 
-import by.pvt.entity.enumentity.Status;
+import by.pvt.dto.save.StatusSave;
 import lombok.Data;
 
 import jakarta.persistence.*;
@@ -16,8 +16,11 @@ public class Save {
     @SequenceGenerator(name = "save-seq", sequenceName = "seq-save", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "save-seq")
     private Long id;
+    @Column(unique = true)
+    private String name;
     private BigDecimal discounts;
     private LocalDate startDate;
     private LocalDate endDate;
-    private Status status;
+    @Enumerated(EnumType.STRING)
+    private StatusSave status;
 }

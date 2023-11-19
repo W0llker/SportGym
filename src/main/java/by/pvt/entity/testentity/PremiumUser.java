@@ -1,13 +1,13 @@
 package by.pvt.entity.testentity;
 
-import by.pvt.entity.enumentity.Status;
+import by.pvt.dto.guest.Status;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Subselect;
 import org.hibernate.annotations.Where;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 
 @Entity

@@ -1,6 +1,6 @@
 package by.pvt.entity;
 
-import by.pvt.entity.enumentity.Status;
+import by.pvt.dto.guest.Status;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,6 +26,9 @@ public class Guest extends User {
     @Column(name = "first_date")
     private LocalDate firstDate;
     private BigDecimal amount;
-    @OneToMany(mappedBy = "guest", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "guest", fetch = FetchType.LAZY)
     private List<Visits> visits;
+    @ManyToOne
+    private Save save;
+
 }

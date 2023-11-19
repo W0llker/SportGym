@@ -5,7 +5,7 @@ import by.pvt.entity.testentity.PremiumUser;
 import by.pvt.repository.UserDao;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.EntityManager;
+import jakarta.persistence.EntityManager;
 import java.util.List;
 //@Repository
 //public class UserJpa implements UserDao {
