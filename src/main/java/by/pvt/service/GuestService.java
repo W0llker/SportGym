@@ -1,12 +1,13 @@
 package by.pvt.service;
 
-import by.pvt.entity.Guest;
+import by.pvt.dto.guest.GuestRequest;
+import by.pvt.dto.guest.GuestResponse;
 
 import java.util.List;
 
 public interface GuestService {
-    void add(Guest guest);
+    GuestResponse add(GuestRequest guest);
     void remove(Long id);
-    Guest findById(Long id);
-    List<Guest> getAllGuest();
+    GuestResponse findById(Long id);
+    List<GuestResponse> getAllGuest();
 }

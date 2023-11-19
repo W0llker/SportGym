@@ -2,12 +2,10 @@ package by.pvt.service.impl;
 
 import by.pvt.entity.Guest;
 import by.pvt.entity.Visits;
-import by.pvt.entity.SportOffice;
-import by.pvt.entity.enumentity.Status;
+import by.pvt.dto.guest.Status;
 import by.pvt.repository.GuestDao;
 import by.pvt.repository.SportOfficeDao;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import by.pvt.repository.VisitsDao;
 import by.pvt.service.VisitsService;

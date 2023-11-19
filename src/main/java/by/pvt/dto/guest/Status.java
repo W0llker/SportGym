@@ -1,4 +1,4 @@
-package by.pvt.entity.enumentity;
+package by.pvt.dto.guest;
 
 public enum Status {
     ACTIVE,

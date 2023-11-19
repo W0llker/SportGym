@@ -7,6 +7,6 @@ import org.mapstruct.Mapper;
 import org.springframework.stereotype.Component;
 
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface MapperActivitiesEntity extends SupperMapper<Activities,ActivitiesRequest,ActivitiesResponse>{
 }
